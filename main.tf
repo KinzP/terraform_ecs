@@ -1,12 +1,22 @@
 # Provider
 terraform {
   required_providers {
+    docker = {
+      source  = "kreuzwerker/docker"
+      version = "~> 2.20.0"
+    }
     aws = {
       source  = "hashicorp/aws"
       version = "~> 4.0"
     }
   }
-  }
+}
+
+provider "docker" {}
+
+provider "aws" {
+  region = "us.east.1
+}
 
 resource "aws_ecs_cluster" "cluster" {
   name = "KP19-ecs-cluster"
@@ -63,15 +73,3 @@ module "ecs-fargate" {
 
    load_balanced = false
 }
-  required_providers {
-    docker = {
-      source  = "kreuzwerker/docker"
-      version = "~> 2.20.0"
-    }
-  }
-}
-
-provider "aws" {
-  region = "us-east-1"
-}
-provider "docker" {}
