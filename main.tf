@@ -6,8 +6,8 @@ terraform {
       version = "~> 4.0"
     }
   }
-resource "aws_ecs_cluster" "cluster" {
-  name = "KP19-ecs-cluster"
+resource "aws_ecs_cluster_capacity_providers" "cluster" {
+  cluster_name = aws_ecs_cluster.cluster.name
 
   setting {
     name  = "containerInsights"
