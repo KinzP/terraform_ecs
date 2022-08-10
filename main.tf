@@ -63,8 +63,6 @@ module "ecs-fargate" {
 
    load_balanced = false
 }
-
-terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
