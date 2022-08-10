@@ -1,36 +1,21 @@
 # Provider
 terraform {
   required_providers {
-    docker = {
-      source  = "kreuzwerker/docker"
-      version = "~> 2.20.0"
-    }
     aws = {
       source  = "hashicorp/aws"
       version = "~> 4.0"
     }
   }
-}
-
-provider "docker" {}
-
-provider "aws" {
-  region = "us.east.1
-}
-
+  }
 resource "aws_ecs_cluster" "cluster" {
   name = "KP19-ecs-cluster"
-  
+
   setting {
     name  = "containerInsights"
     value = "disabled"
   }
 }
-  
-  resource "aws_ecs_cluster_capacity_providers" "cluster" {
-    cluster_name = aws_ecs_cluster.cluster.name
-  
-    capacity_providers = ["FARGATE_SPOT", "FARGATE"]
+  capacity_providers = ["FARGATE_SPOT", "FARGATE"]
 
   default_capacity_provider_strategy {
     capacity_provider = "FARGATE_SPOT"
@@ -73,3 +58,17 @@ module "ecs-fargate" {
 
    load_balanced = false
 }
+
+terraform {
+  required_providers {
+    docker = {
+      source  = "kreuzwerker/docker"
+      version = "~> 2.20.0"
+    }
+  }
+}
+
+provider "aws" {
+  region = "us-east-1"
+}
+provider "docker" {}
