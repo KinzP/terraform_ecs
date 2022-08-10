@@ -1,4 +1,4 @@
-resource "aws_vpc" "ecs_vpc" {
+resource "aws_vpc" "TF_KP19" {
   cidr_block = var.vpc_cidr
 
   tags = {
